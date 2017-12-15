@@ -1,0 +1,151 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+
+<head>
+  <title>Getting Started Extension's Popup</title>
+  <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+  <style type="text/css">
+    body {
+      margin: 10px;
+      white-space: nowrap;
+    }
+
+    p {
+      font-family: 'Audiowide', cursive;
+      font-size: 18px;
+      color: white;
+      position: absolute;
+    }
+
+    h1 {
+      font-size: 15px;
+    }
+
+    #container {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #map {
+      background-image: url('/bg.png');
+      height: 325px;
+      width: 325px;
+    }
+
+    #time1 {
+      top: 31px;
+      right: 235px;
+    }
+
+    #time2 {
+      top: 55px;
+      right: 125px;
+    }
+
+    #time3 {
+      font-size: 20px;
+      top: 135px;
+      right: 50px;
+    }
+
+    #time4 {
+      font-size: 20px;
+      top: 215px;
+      right: 50px;
+    }
+
+    .loading:after {
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: bottom;
+      -webkit-animation: ellipsis steps(4,end) 900ms infinite;      
+      animation: ellipsis steps(4,end) 900ms infinite;
+      content: "\2026"; /* ascii code for the ellipsis character */
+      width: 0px;
+    }
+
+    @keyframes ellipsis {
+      to {
+        width: 1.25em;    
+      }
+    }
+
+    @-webkit-keyframes ellipsis {
+      to {
+        width: 1.25em;    
+      }
+    }
+  </style>
+
+  <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+    -->
+  <script src="moment.js"></script>
+  <script src="popup.js"></script>
+</head>
+
+<body>
+  <div id="map">
+    <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" width="324" height="325" viewBox="0 0 324 325">
+      <defs>
+        <style>
+          .cls-1,
+          .cls-2,
+          .cls-3,
+          .cls-4 {
+            fill: none;
+            stroke: #fff;
+            stroke-linecap: round;
+          }
+
+          .cls-1,
+          .cls-4 {
+            stroke-linejoin: round;
+          }
+
+          .cls-1,
+          .cls-2 {
+            stroke-width: 2px;
+          }
+
+          .cls-2,
+          .cls-3 {
+            stroke-miterlimit: 10;
+          }
+
+          .cls-3,
+          .cls-4 {
+            stroke-width: 1.5px;
+          }
+        </style>
+      </defs>
+      <title>Artboard 1</title>
+      <line class="cls-1" x1="188" y1="273.75" x2="188" y2="237.15" />
+      <line class="cls-2" x1="188" y1="217.75" x2="188" y2="157.25" />
+      <polyline class="cls-1" points="209.58 251.73 202.58 251.73 188 237.15 201.58 223.57 209.58 223.57" />
+      <polyline class="cls-1" points="209.58 171.33 202.58 171.33 188 156.75 201.58 143.17 209.58 143.17" />
+      <line class="cls-3" x1="125" y1="135.51" x2="125" y2="76.02" />
+      <line class="cls-3" x1="122.33" y1="105.42" x2="122.33" y2="53.67" />
+      <polyline class="cls-4" points="107.5 42.58 112.31 42.58 122.33 53.56 113 63.78 107.5 63.78" />
+      <polyline class="cls-4" points="139.83 86.62 135.02 86.62 125 75.64 134.33 65.42 139.83 65.42" />
+    </svg>113 63.78 107.5 63.78"/>
+    <polyline class="cls-4" points="139.83 86.62 135.02 86.62 125 75.64 134.33 65.42 139.83 65.42"
+    />
+    </svg>
+    <p class='loading' id="time1"></p>
+    <p class='loading' id="time2"></p>
+    <p class='loading' id="time3"></p>
+    <p class='loading' id="time4"></p>
+  </div>
+</body>
+
+</html>
