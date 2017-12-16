@@ -1,20 +1,25 @@
 /**
- * Change the background color of the current page.
- *
- * @param {array} times and array contains how many min away each bus is
+ * Populates error message in red text on the screen
+ * @param {string} e error txt
  */
-function updateTime (times) {
-
-
+function displayErr (e) {
+  document.querySelector('#errortxt').textContent = e;
 }
 
+/**
+ * Format time in the form of mins away
+ * @param {obj} time prediction record returne by api
+ */
 function formatTime (time) {
   // 2017-12-14T19:03:00Z
   var t = moment().to(moment(time.arrival_time, 'YYYY-MM-DDTHH:mm:ss'));
   var str = t.match(/in (\d+ min)/);
-  console.log({str:str});
-  return str[1];
+  return (typeof str[1] !== 'undefined' ? str[1] : '?');
 }
+
+/**
+ * When the pop up renders make an ajax call to the api to get bus times
+ */
 document.addEventListener('DOMContentLoaded', () => {
   console.log('onload' + Date());
   var request = new XMLHttpRequest();
@@ -27,42 +32,19 @@ document.addEventListener('DOMContentLoaded', () => {
       var times = data.map((t) => {
         return formatTime(t.with[0]);
       });
-      var els = document.querySelectorAll('p[id*=time'), i;
+      var els = document.querySelectorAll('p[id*=time');
       console.log({els:els});
-      for (i = 0; i < els.length; ++i) {
+      for (var i = 0; i < els.length; ++i) {
         els[i].textContent = times[i];
         els[i].classList.remove('loading');
       }
-
       console.log(times);
     } else {
-      // We reached our target server, but it returned an error
-  
+      displayErr('Server returned error');
     }
   };
-  
   request.onerror = function () {
-    // There was a connection error of some sort
+    displayErr('Failed to connect to server');
   };
-  
   request.send();
-  // getCurrentTabUrl((url) => {
-  //   var dropdown = document.getElementById('dropdown');
-
-  //   // Load the saved background color for this page and modify the dropdown
-  //   // value, if needed.
-  //   getSavedBackgroundColor(url, (savedColor) => {
-  //     if (savedColor) {
-  //       changeBackgroundColor(savedColor);
-  //       dropdown.value = savedColor;
-  //     }
-  //   });
-
-  //   // Ensure the background color is changed and saved when the dropdown
-  //   // selection changes.
-  //   dropdown.addEventListener('change', () => {
-  //     changeBackgroundColor(dropdown.value);
-  //     saveBackgroundColor(url, dropdown.value);
-  //   });
-  // });
 });
