@@ -14,7 +14,7 @@ function formatTime (time) {
   // 2017-12-14T19:03:00Z
   var t = moment().to(moment(time.arrival_time, 'YYYY-MM-DDTHH:mm:ss'));
   var str = t.match(/in (\d+ min)/);
-  return (typeof str[1] !== 'undefined' ? str[1] : '?');
+  return (str && typeof str[1] !== 'undefined' ? str[1] : '?');
 }
 
 /**
